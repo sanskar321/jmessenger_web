@@ -1,6 +1,9 @@
 import React from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 import ChatContext from "../ChatContext.tsx";
+import ChatTitle from "./ChatTitle";
+import ChatBubbleArea from "./ChatBubbleArea";
+import MessageBox from "./MessageBox";
 type Props = Required<typeof ChatBody.defaultProps> &
   RouteComponentProps & { className?: string };
 type State = {
@@ -8,6 +11,7 @@ type State = {
 };
 class ChatBody extends React.Component<Props, State> {
   static defaultProps = {};
+  static contextType = ChatContext;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -19,24 +23,17 @@ class ChatBody extends React.Component<Props, State> {
     return (
       <div
         className={
-          "bg-green-300 w-dvw h-dvh flex flex-row" + " " + this.props.className
+          "w-full h-full flex flex-row bg-white sm:bg-transparent " + " " + this.props.className
         }
       >
-        <div className="bg-blue-400 min-w-[388px]"></div>
-        <div className="w-full flex flex-row justify-center items-center">
-          <button
-            className="bg-pink-400 h-10 w-20"
-            onClick={() => {
-              this.context();
-              console.log("ChatBody button is clicked");
-            }}
-          >
-            ChatBody
-          </button>
+        <div className="min-w-[388px] hidden sm:block bg-transparent"></div>
+        <div className="w-full grid grid-rows-[54px_1fr_minmax(90px,auto)]">
+          <ChatTitle />
+          <ChatBubbleArea className="block" />
+          <MessageBox className="block" />
         </div>
       </div>
     );
   }
 }
 export default withRouter(ChatBody);
-ChatBody.contextType = ChatContext;

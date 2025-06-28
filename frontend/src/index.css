@@ -3,6 +3,26 @@
 body {
   margin: 0;
 }
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
+/*This code is suggested by chat-GPT*/
+/* Example: Custom Scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 0px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background:transparent ;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color:#0285c77d;
+}
+
+.scrollbar-thin {
+  scrollbar-width: none; /* Options: auto | thin | none */
+  scrollbar-color: #0285c77d transparent; /* thumb | track */
+}
+
+/*This code is by Sanskar Bhusal*/
+#textarea{
+  field-sizing: content;
 }

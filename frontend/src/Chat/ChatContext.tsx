@@ -1,3 +1,7 @@
 import React from "react";
-const ChatContext = React.createContext(() => {});
-export default ChatContext;
+import type { ChatData } from "./chatData"
+interface ChatContext {
+    swap: () => void;
+    chatData: ChatData;
+}
+export default React.createContext<ChatContext>({} as ChatContext);
